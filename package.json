@@ -1,17 +1,18 @@
 {
   "name": "wp-i18n-loader",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "wp-i18n-loader",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node example/webpack.config.js"
   },
   "keywords": [
     "wp-i18n-loader"
   ],
   "author": "vok",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
     "acorn": "^6.0.5",
     "chalk": "^2.4.2",
