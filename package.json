@@ -1,13 +1,13 @@
 {
-  "name": "wp-i18n-loader",
-  "version": "1.1.1",
-  "description": "wp-i18n-loader",
-  "private": true,
+  "name": "wp-i18n-plugin",
+  "version": "1.0.1",
+  "description": "wp-i18n-plugin",
+  "main": "index.js",
   "scripts": {
     "test": "node example/webpack.config.js"
   },
   "keywords": [
-    "wp-i18n-loader"
+    "wp-i18n-plugin"
   ],
   "author": "vok",
   "license": "MIT",
