@@ -1,21 +1,22 @@
 {
   "name": "wp-i18n-plugin",
-  "version": "1.0.1",
+  "version": "1.0.5",
   "description": "wp-i18n-plugin",
   "main": "index.js",
   "scripts": {
     "test": "node example/webpack.config.js"
   },
   "keywords": [
-    "wp-i18n-plugin"
+    "wp-i18n-plugin",
+    "i18n-plugin"
   ],
-  "author": "vok",
+  "author": "vok123",
   "license": "MIT",
-  "dependencies": {
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vok123/wp-i18n-plugin.git"
   },
   "devDependencies": {
-    "acorn": "^6.0.5",
-    "chalk": "^2.4.2",
-    "vue-template-compiler": "^2.5.22"
+    "chalk": "^2.4.2"
   }
 }
