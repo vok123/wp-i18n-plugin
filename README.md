@@ -1,4 +1,5 @@
 ## 用于webpack 4进行多编译进行多语言打包处理. 包含编译多语言处理及异步多语言拆分输出
+  - 自动管理语言配置, 在编译期后直接生成多语言拆分, 无需在客户端重新渲染
   - 项目打包后根据配置的多语言数量生成多分具有单一语言的文件, 例如使用cn,en则最后输出将会有 /dist/cn , /dist/en
 
 
@@ -6,19 +7,7 @@
 ``` bash
 npm install webpack webpack-cli wp-i18n-loader --save-dev
 ```
-### example.js
-``` js
-console.log('__("你好")');
-```
-### src/lang/lang.json
-``` json
-{
-  "你好": {
-    "cn": "你好",
-    "en": "Hello"
-  }
-}
-```
+
 ### webpack.config.js
 ``` js
 const WebpackI18n = require('wp-i18n-loader'),
@@ -61,8 +50,8 @@ let webpackConfig = {
 ```
 
 ### webpack多编译设置(使用node api 或者 webpack config中的一种)
+- node api 启动配置方式
 ``` js
-// node api
 webpackConfigArr = ['cn', 'en'].map(language => {
   webpackConfig = _.cloneDeep(webpackConfig);
   // 配置当前编译参数
@@ -76,7 +65,9 @@ webpack(webpackConfigArr, (err, stats) => {
   err && console.log(err);
 });
 
-// webpack config
+```
+- webpack config 启动配置方式
+``` js
 module.exports = ['cn', 'en'].map((language) => {
   webpackConfig = _.cloneDeep(webpackConfig);
 	// 配置当前编译参数
@@ -85,7 +76,19 @@ module.exports = ['cn', 'en'].map((language) => {
   webpackConfig.output.path = path.join(__dirname, 'dist') + '/' + language;
   return webpackConfig;
 });
-
+```
+### example.js
+``` js
+console.log('__("你好")');
+```
+### src/lang/lang.json
+``` json
+{
+  "你好": {
+    "cn": "你好",
+    "en": "Hello"
+  }
+}
 ```
 
 ### dist/en/output.js
@@ -100,5 +103,6 @@ console.log('你好');
 ### 关于多编译 webpack-dev-server 配置
   - 建议只对单一的入口进行配置
 ### 关于编译性能提升
+  - 建议使用在项目中加入cache-loader进行缓存以提高效率
   - 建议开发时只启动单个语言进行开发, 以降低编译次数以达到快速编译的效果
 
