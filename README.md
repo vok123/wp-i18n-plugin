@@ -1,4 +1,5 @@
-## wp-i18n-plugin 多语言编译处理解决方案
+## 🎉🎉 前端多语言编译处理解决方案 wp-i18n-plugin 
+  - 基于webpack4 AST分析多语言生成插件, 支持Vue, React, Angular
   - 自动管理语言配置, 在编译期后直接生成多语言拆分, 无需在客户端重新渲染
   - 项目打包后根据配置的多语言数量生成多分具有单一语言的文件. 例如使用zh-cn, en则最后输出将会有
   ``` js
@@ -7,12 +8,12 @@
   ```
 
 
-### 安装
+### 👏👏安装
 ``` bash
 npm install webpack webpack-cli wp-i18n-plugin --save-dev
 ```
 
-### webpack.config.js
+### ⚙ webpack.config.js
 ``` js
 const WebpackI18n = require('wp-i18n-plugin'),
   path = require('path'),
@@ -24,7 +25,7 @@ let webpackConfig = {
   entry: './example/example.js',
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'js/output.js'
+    filename: 'output.js'
   },
   plugins: [
     // 多语言处理插件
@@ -32,7 +33,7 @@ let webpackConfig = {
       sourcePath: './example/lang.json',
       // 自动新增i18n对象语言列表
       languageList: ['zh-cn', 'en'],
-      // 设置默认将对于key设置为cn的值
+      // 设置默认将对于key设置为zh-cn的值
       useLanguage: 'zh-cn',
       // 是否根据内容自动生成对象
       autoWriteAble: true,
@@ -43,9 +44,10 @@ let webpackConfig = {
       // 自动移除无用的key
       removeUnUseKeys: true
     }),
+    // 后端返回code对应多语言文件拆分
     new WebpackI18n.Spliter({
       // 输出文件路径名称
-      outputName: 'lang/async-lang.json',
+      outputName: './example/async-lang.json',
       // 语言包路径
       sourcePath: './example/async-lang.json'
     })
@@ -53,7 +55,7 @@ let webpackConfig = {
 };
 ```
 
-### webpack多编译设置(使用node api 或者 webpack config中的一种)
+### 📦[webpack多编译](https://webpack.js.org/concepts/targets/#multiple-targets)设置(使用node api 或者 webpack config中的一种)
 - node api 启动配置方式
 ``` js
 webpackConfigArr = ['zh-cn', 'en'].map(language => {
@@ -81,11 +83,12 @@ module.exports = ['zh-cn', 'en'].map((language) => {
   return webpackConfig;
 });
 ```
-### example.js
+## 🌰例子
+#### example.js
 ``` js
 console.log('__("你好")');
 ```
-### src/lang/lang.json
+#### lang.json
 ``` json
 {
   "你好": {
@@ -94,19 +97,18 @@ console.log('__("你好")');
   }
 }
 ```
-
-### dist/en/output.js
+### 🐭example.js编译后输出结果:
+ - dist/en/output.js
 ``` js
 console.log('Hello');
 ```
-### dist/cn/output.js
+ - dist/zh-cn/output.js
 ``` js
 console.log('你好');
 ```
 
-### 关于多编译 webpack-dev-server 配置
-  - 建议只对单一的入口进行配置
-### 关于编译性能提升
+
+### 🖖 关于编译性能提升
   - 建议使用在项目中加入cache-loader进行缓存以提高效率
   - 建议开发时只启动单个语言进行开发, 以降低编译次数以达到快速编译的效果
 
