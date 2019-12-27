@@ -8,7 +8,7 @@ let webpackConfig = {
   entry: './example/example.js',
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'js/output.js'
+    filename: './output.js'
   },
   plugins: [
     // 多语言处理插件
