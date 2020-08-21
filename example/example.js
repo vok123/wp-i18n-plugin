@@ -1,1 +1,1 @@
-console.log('__("你好")');
+console.log('__("你好")!!');
